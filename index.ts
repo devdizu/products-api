@@ -1,9 +1,9 @@
 import express from "express";
-import products from "../src/api/products/products";
+import items from "./src/api/items/items";
 
 const app = express();
 
-app.use("/api/items", products);
+app.use("/api/items", items);
 
 app.listen(3000, () => {
   console.log("The application is listening on port 3000!");

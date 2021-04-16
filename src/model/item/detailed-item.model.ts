@@ -7,6 +7,6 @@ export default class DetailedItem extends Item {
   constructor(data: any) {
     super(data);
     this.sold_quantity = data.sold_quantity;
-    this.description = "FALTA";
+    this.description = data.description;
   }
 }
