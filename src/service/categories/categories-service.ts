@@ -10,7 +10,7 @@ const getCategoriesFromIds = (categoryIds: string[]): Promise<string[]> => {
     Promise.all(categoryIds.map((categoryId) => getCategory(categoryId)))
       .then((response: any) => {
         const categoryNames = mapCategoryNames(response);
-        resolve(Array.from(new Set<string>(categoryNames)));
+        resolve(categoryNames);
       })
       .catch((error) => reject(error));
   });
