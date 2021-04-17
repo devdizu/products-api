@@ -13,7 +13,9 @@ router.get("/", async (request, response) => {
     const itemsResponse = await itemsService.getItems(query);
     const items = mapItems(itemsResponse.data.results);
     const categoryIds = mapCategoryIds(itemsResponse.data.results);
-    const categories = await categoriesService.getCategoriesFromIds(categoryIds);
+    const categories = await categoriesService.getCategoriesFromIds(
+      categoryIds
+    );
     response.send(new ItemsResponse({ categories, items }));
   } catch (error) {
     response.send(new ItemsResponse({ error }));
@@ -21,7 +23,7 @@ router.get("/", async (request, response) => {
 });
 
 router.get("/:id", async (request, response) => {
-  const id = (request.params.id as string) ?? "";
+  const id = request.params.id as string;
   try {
     const item = await itemsService.getItemWithDescription(id);
     response.send(new DetailedItemResponse({ item }));

@@ -1,5 +1,5 @@
 import Author from "./author.interface";
-export default abstract class BaseResponse {
+export default class BaseResponse {
   public author: Author;
   public error: any;
   constructor({ error }: any) {
