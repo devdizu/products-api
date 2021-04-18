@@ -1,6 +1,7 @@
 import axios from "axios";
 import DetailedItem from "../../model/item/detailed-item.model";
 import { API_URL } from "../../util/constants";
+import categoriesService from "../categories/categories-service";
 
 const getItems = (query: string): Promise<any> => {
   return axios.get(`${API_URL}/sites/MLA/search?q=${query}`);
@@ -19,12 +20,19 @@ const getItemWithDescription = (id: string): Promise<any> => {
     Promise.all([itemsService.getItem(id), itemsService.getDescription(id)])
       .then(([responseItem, responseDescription]) => {
         const description = responseDescription.data.plain_text;
-        resolve(
-          new DetailedItem({
-            ...responseItem.data,
-            description,
+        categoriesService
+          .getCategory(responseItem.data.category_id)
+          .then((responseCategory) => {
+            const category = responseCategory.data.name;
+            resolve(
+              new DetailedItem({
+                ...responseItem.data,
+                description,
+                category,
+              })
+            );
           })
-        );
+          .catch((error) => reject(error));
       })
       .catch((error) => reject(error));
   });

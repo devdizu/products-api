@@ -3,16 +3,16 @@ import itemsService from "../../service/items/items-service";
 import categoriesService from "../../service/categories/categories-service";
 import ItemsResponse from "../../model/responses/items-response.model";
 import DetailedItemResponse from "../../model/responses/detailed-item-response.model";
-import { mapItems, mapCategoryIds } from "../../util/util";
+import { mapItems, mapCategoryIds, spliceResponseItems } from "../../util/util";
 
 const router = express.Router();
 
 router.get("/", async (request, response) => {
   const query = (request.query.q as string) ?? "";
   try {
-    const itemsResponse = await itemsService.getItems(query);
-    const items = mapItems(itemsResponse.data.results).splice(1, 4);
-    const categoryIds = mapCategoryIds(itemsResponse.data.results);
+    const itemsData = spliceResponseItems(await itemsService.getItems(query));
+    const items = mapItems(itemsData);
+    const categoryIds = mapCategoryIds(itemsData);
     const categories = await categoriesService.getCategoriesFromIds(
       categoryIds
     );

@@ -1,6 +1,6 @@
 import express from "express";
 import BaseResponse from "../model/responses/base-response.model";
-import itemsRoutes from "./items/items";
+import itemsRoutes from "./items/items.api";
 
 const api = express();
 
