@@ -14,7 +14,7 @@ export default class Item {
     this.price = {
       currency: data.currency_id,
       amount: data.price,
-      decimals: 0,
+      decimals: data.price.toString().split(".")[1] ?? "",
     };
     this.picture = data.thumbnail;
     this.condition = data.condition;

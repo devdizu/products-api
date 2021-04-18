@@ -11,7 +11,7 @@ router.get("/", async (request, response) => {
   const query = (request.query.q as string) ?? "";
   try {
     const itemsResponse = await itemsService.getItems(query);
-    const items = mapItems(itemsResponse.data.results);
+    const items = mapItems(itemsResponse.data.results).splice(1, 4);
     const categoryIds = mapCategoryIds(itemsResponse.data.results);
     const categories = await categoriesService.getCategoriesFromIds(
       categoryIds
