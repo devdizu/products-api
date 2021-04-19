@@ -1,10 +1,10 @@
-# products-api
+# Products API
 
 This is a [Node.js](https://nodejs.org/) API along with [Express](https://expressjs.com//) for MercadoLibre Front End test.
 
 ## Getting Started
 
-First, instal dependencies:
+First, install dependencies:
 
 ```bash
 npm i
@@ -12,7 +12,7 @@ npm i
 
 ## Running Application
 
-For start the application locaclly, please run the following command:
+For start the application locally, please run the following command:
 
 ```bash
 npm start
